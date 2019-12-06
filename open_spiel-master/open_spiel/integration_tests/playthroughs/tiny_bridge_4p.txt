@@ -1,0 +1,330 @@
+game: tiny_bridge_4p
+seed: 4133439701
+
+GameType.chance_mode = ChanceMode.EXPLICIT_STOCHASTIC
+GameType.dynamics = Dynamics.SEQUENTIAL
+GameType.information = Information.IMPERFECT_INFORMATION
+GameType.long_name = "Tiny Bridge (Contested)"
+GameType.max_num_players = 4
+GameType.min_num_players = 4
+GameType.parameter_specification = []
+GameType.provides_information_state_string = True
+GameType.provides_information_state_tensor = False
+GameType.provides_observation_string = True
+GameType.provides_observation_tensor = False
+GameType.reward_model = RewardModel.TERMINAL
+GameType.short_name = "tiny_bridge_4p"
+GameType.utility = Utility.ZERO_SUM
+
+NumDistinctActions() = 9
+MaxChanceOutcomes() = 28
+GetParameters() = {}
+NumPlayers() = 4
+MinUtility() = -160.0
+MaxUtility() = 160.0
+UtilitySum() = 0.0
+MaxGameLength() = 57
+ToString() = "tiny_bridge_4p()"
+
+# State 0
+IsTerminal() = False
+ToString() = "W:?? N:?? E:?? S:??"
+History() = []
+HistoryString() = ""
+IsChanceNode() = True
+IsSimultaneousNode() = False
+CurrentPlayer() = -1
+InformationStateString(0) = "W:??"
+InformationStateString(1) = "N:??"
+InformationStateString(2) = "E:??"
+InformationStateString(3) = "S:??"
+ObservationString(0) = "W:??"
+ObservationString(1) = "N:??"
+ObservationString(2) = "E:??"
+ObservationString(3) = "S:??"
+ChanceOutcomes() = [{0, 0.035714285714}, {1, 0.035714285714}, {3, 0.035714285714}, {6, 0.035714285714}, {10, 0.035714285714}, {15, 0.035714285714}, {21, 0.035714285714}, {2, 0.035714285714}, {4, 0.035714285714}, {7, 0.035714285714}, {11, 0.035714285714}, {16, 0.035714285714}, {22, 0.035714285714}, {5, 0.035714285714}, {8, 0.035714285714}, {12, 0.035714285714}, {17, 0.035714285714}, {23, 0.035714285714}, {9, 0.035714285714}, {13, 0.035714285714}, {18, 0.035714285714}, {24, 0.035714285714}, {14, 0.035714285714}, {19, 0.035714285714}, {25, 0.035714285714}, {20, 0.035714285714}, {26, 0.035714285714}, {27, 0.035714285714}]
+LegalActions() = [0, 1, 3, 6, 10, 15, 21, 2, 4, 7, 11, 16, 22, 5, 8, 12, 17, 23, 9, 13, 18, 24, 14, 19, 25, 20, 26, 27]
+StringLegalActions() = ["HQHJ", "HKHJ", "HAHJ", "SJHJ", "SQHJ", "SKHJ", "SAHJ", "HKHQ", "HAHQ", "SJHQ", "SQHQ", "SKHQ", "SAHQ", "HAHK", "SJHK", "SQHK", "SKHK", "SAHK", "SJHA", "SQHA", "SKHA", "SAHA", "SQSJ", "SKSJ", "SASJ", "SKSQ", "SASQ", "SASK"]
+
+# Apply action "SAHJ"
+action: 21
+
+# State 1
+IsTerminal() = False
+ToString() = "W:SAHJ N:?? E:?? S:??"
+History() = [21]
+HistoryString() = "21"
+IsChanceNode() = True
+IsSimultaneousNode() = False
+CurrentPlayer() = -1
+InformationStateString(0) = "W:SAHJ"
+InformationStateString(1) = "N:??"
+InformationStateString(2) = "E:??"
+InformationStateString(3) = "S:??"
+ObservationString(0) = "W:SAHJ"
+ObservationString(1) = "N:??"
+ObservationString(2) = "E:??"
+ObservationString(3) = "S:??"
+ChanceOutcomes() = [{2, 0.066666666667}, {4, 0.066666666667}, {7, 0.066666666667}, {11, 0.066666666667}, {16, 0.066666666667}, {5, 0.066666666667}, {8, 0.066666666667}, {12, 0.066666666667}, {17, 0.066666666667}, {9, 0.066666666667}, {13, 0.066666666667}, {18, 0.066666666667}, {14, 0.066666666667}, {19, 0.066666666667}, {20, 0.066666666667}]
+LegalActions() = [2, 4, 7, 11, 16, 5, 8, 12, 17, 9, 13, 18, 14, 19, 20]
+StringLegalActions() = ["HKHQ", "HAHQ", "SJHQ", "SQHQ", "SKHQ", "HAHK", "SJHK", "SQHK", "SKHK", "SJHA", "SQHA", "SKHA", "SQSJ", "SKSJ", "SKSQ"]
+
+# Apply action "HAHQ"
+action: 4
+
+# State 2
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:?? S:??"
+History() = [21, 4]
+HistoryString() = "21 4"
+IsChanceNode() = True
+IsSimultaneousNode() = False
+CurrentPlayer() = -1
+InformationStateString(0) = "W:SAHJ"
+InformationStateString(1) = "N:HAHQ"
+InformationStateString(2) = "E:??"
+InformationStateString(3) = "S:??"
+ObservationString(0) = "W:SAHJ"
+ObservationString(1) = "N:HAHQ"
+ObservationString(2) = "E:??"
+ObservationString(3) = "S:??"
+ChanceOutcomes() = [{8, 0.166666666667}, {12, 0.166666666667}, {17, 0.166666666667}, {14, 0.166666666667}, {19, 0.166666666667}, {20, 0.166666666667}]
+LegalActions() = [8, 12, 17, 14, 19, 20]
+StringLegalActions() = ["SJHK", "SQHK", "SKHK", "SQSJ", "SKSJ", "SKSQ"]
+
+# Apply action "SKHK"
+action: 17
+
+# State 3
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:??"
+History() = [21, 4, 17]
+HistoryString() = "21 4 17"
+IsChanceNode() = True
+IsSimultaneousNode() = False
+CurrentPlayer() = -1
+InformationStateString(0) = "W:SAHJ"
+InformationStateString(1) = "N:HAHQ"
+InformationStateString(2) = "E:SKHK"
+InformationStateString(3) = "S:??"
+ObservationString(0) = "W:SAHJ"
+ObservationString(1) = "N:HAHQ"
+ObservationString(2) = "E:SKHK"
+ObservationString(3) = "S:??"
+ChanceOutcomes() = [{14, 1.000000000000}]
+LegalActions() = [14]
+StringLegalActions() = ["SQSJ"]
+
+# Apply action "SQSJ"
+action: 14
+
+# State 4
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ"
+History() = [21, 4, 17, 14]
+HistoryString() = "21 4 17 14"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 0
+InformationStateString(0) = "W:SAHJ"
+InformationStateString(1) = "N:HAHQ"
+InformationStateString(2) = "E:SKHK"
+InformationStateString(3) = "S:SQSJ"
+ObservationString(0) = "W:SAHJ"
+ObservationString(1) = "N:HAHQ"
+ObservationString(2) = "E:SKHK"
+ObservationString(3) = "S:SQSJ"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0, 1, 2, 3, 4, 5, 6]
+StringLegalActions() = ["Pass", "1H", "1S", "1NT", "2H", "2S", "2NT"]
+
+# Apply action "2H"
+action: 4
+
+# State 5
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H"
+History() = [21, 4, 17, 14, 4]
+HistoryString() = "21 4 17 14 4"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 1
+InformationStateString(0) = "W:SAHJ 2H"
+InformationStateString(1) = "N:HAHQ 2H"
+InformationStateString(2) = "E:SKHK 2H"
+InformationStateString(3) = "S:SQSJ 2H"
+ObservationString(0) = "W:SAHJ 2H:W"
+ObservationString(1) = "N:HAHQ 2H:W"
+ObservationString(2) = "E:SKHK 2H:W"
+ObservationString(3) = "S:SQSJ 2H:W"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0, 5, 6, 7]
+StringLegalActions() = ["Pass", "2S", "2NT", "Dbl"]
+
+# Apply action "2S"
+action: 5
+
+# State 6
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S"
+History() = [21, 4, 17, 14, 4, 5]
+HistoryString() = "21 4 17 14 4 5"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 2
+InformationStateString(0) = "W:SAHJ 2H-2S"
+InformationStateString(1) = "N:HAHQ 2H-2S"
+InformationStateString(2) = "E:SKHK 2H-2S"
+InformationStateString(3) = "S:SQSJ 2H-2S"
+ObservationString(0) = "W:SAHJ 2S:N"
+ObservationString(1) = "N:HAHQ 2S:N"
+ObservationString(2) = "E:SKHK 2S:N"
+ObservationString(3) = "S:SQSJ 2S:N"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0, 6, 7]
+StringLegalActions() = ["Pass", "2NT", "Dbl"]
+
+# Apply action "2NT"
+action: 6
+
+# State 7
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT"
+History() = [21, 4, 17, 14, 4, 5, 6]
+HistoryString() = "21 4 17 14 4 5 6"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 3
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT"
+ObservationString(0) = "W:SAHJ 2NT:E"
+ObservationString(1) = "N:HAHQ 2NT:E"
+ObservationString(2) = "E:SKHK 2NT:E"
+ObservationString(3) = "S:SQSJ 2NT:E"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0, 7]
+StringLegalActions() = ["Pass", "Dbl"]
+
+# Apply action "Dbl"
+action: 7
+
+# State 8
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT-Dbl"
+History() = [21, 4, 17, 14, 4, 5, 6, 7]
+HistoryString() = "21 4 17 14 4 5 6 7"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 0
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT-Dbl"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT-Dbl"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT-Dbl"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT-Dbl"
+ObservationString(0) = "W:SAHJ 2NT:E Dbl:S"
+ObservationString(1) = "N:HAHQ 2NT:E Dbl:S"
+ObservationString(2) = "E:SKHK 2NT:E Dbl:S"
+ObservationString(3) = "S:SQSJ 2NT:E Dbl:S"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0, 8]
+StringLegalActions() = ["Pass", "RDbl"]
+
+# Apply action "RDbl"
+action: 8
+
+# State 9
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT-Dbl-RDbl"
+History() = [21, 4, 17, 14, 4, 5, 6, 7, 8]
+HistoryString() = "21 4 17 14 4 5 6 7 8"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 1
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT-Dbl-RDbl"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT-Dbl-RDbl"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT-Dbl-RDbl"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT-Dbl-RDbl"
+ObservationString(0) = "W:SAHJ 2NT:E Dbl:S RDbl:W"
+ObservationString(1) = "N:HAHQ 2NT:E Dbl:S RDbl:W"
+ObservationString(2) = "E:SKHK 2NT:E Dbl:S RDbl:W"
+ObservationString(3) = "S:SQSJ 2NT:E Dbl:S RDbl:W"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0]
+StringLegalActions() = ["Pass"]
+
+# Apply action "Pass"
+action: 0
+
+# State 10
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass"
+History() = [21, 4, 17, 14, 4, 5, 6, 7, 8, 0]
+HistoryString() = "21 4 17 14 4 5 6 7 8 0"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 2
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT-Dbl-RDbl-Pass"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT-Dbl-RDbl-Pass"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT-Dbl-RDbl-Pass"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass"
+ObservationString(0) = "W:SAHJ 2NT:E Dbl:S RDbl:W"
+ObservationString(1) = "N:HAHQ 2NT:E Dbl:S RDbl:W"
+ObservationString(2) = "E:SKHK 2NT:E Dbl:S RDbl:W"
+ObservationString(3) = "S:SQSJ 2NT:E Dbl:S RDbl:W"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0]
+StringLegalActions() = ["Pass"]
+
+# Apply action "Pass"
+action: 0
+
+# State 11
+IsTerminal() = False
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass"
+History() = [21, 4, 17, 14, 4, 5, 6, 7, 8, 0, 0]
+HistoryString() = "21 4 17 14 4 5 6 7 8 0 0"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = 3
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT-Dbl-RDbl-Pass-Pass"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT-Dbl-RDbl-Pass-Pass"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass"
+ObservationString(0) = "W:SAHJ 2NT:E Dbl:S RDbl:W"
+ObservationString(1) = "N:HAHQ 2NT:E Dbl:S RDbl:W"
+ObservationString(2) = "E:SKHK 2NT:E Dbl:S RDbl:W"
+ObservationString(3) = "S:SQSJ 2NT:E Dbl:S RDbl:W"
+Rewards() = [0.0, 0.0, 0.0, 0.0]
+Returns() = [0.0, 0.0, 0.0, 0.0]
+LegalActions() = [0]
+StringLegalActions() = ["Pass"]
+
+# Apply action "Pass"
+action: 0
+
+# State 12
+IsTerminal() = True
+ToString() = "W:SAHJ N:HAHQ E:SKHK S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass-Pass"
+History() = [21, 4, 17, 14, 4, 5, 6, 7, 8, 0, 0, 0]
+HistoryString() = "21 4 17 14 4 5 6 7 8 0 0 0"
+IsChanceNode() = False
+IsSimultaneousNode() = False
+CurrentPlayer() = -4
+InformationStateString(0) = "W:SAHJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass-Pass"
+InformationStateString(1) = "N:HAHQ 2H-2S-2NT-Dbl-RDbl-Pass-Pass-Pass"
+InformationStateString(2) = "E:SKHK 2H-2S-2NT-Dbl-RDbl-Pass-Pass-Pass"
+InformationStateString(3) = "S:SQSJ 2H-2S-2NT-Dbl-RDbl-Pass-Pass-Pass"
+ObservationString(0) = "W:SAHJ 2NT:E Dbl:S RDbl:W"
+ObservationString(1) = "N:HAHQ 2NT:E Dbl:S RDbl:W"
+ObservationString(2) = "E:SKHK 2NT:E Dbl:S RDbl:W"
+ObservationString(3) = "S:SQSJ 2NT:E Dbl:S RDbl:W"
+Rewards() = [-160.0, 160.0, -160.0, 160.0]
+Returns() = [-160.0, 160.0, -160.0, 160.0]
