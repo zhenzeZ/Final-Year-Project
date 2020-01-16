@@ -1,2 +1,0 @@
-# These are the dependencies to generate the documentation.
-sphinx_markdown_tables
