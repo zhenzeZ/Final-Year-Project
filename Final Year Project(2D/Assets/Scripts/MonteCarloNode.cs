@@ -16,6 +16,15 @@ public class MonteCarloNode : MonoBehaviour
     public Position point;
     public GoBoard board;
 
+    public MonteCarloNode()
+    {
+        score = 0;
+        timesVisited = 0;
+        children = new List<MonteCarloNode>();
+        //availableMoves = board.getAvailableMoves(); // insert board's availableMoves
+        
+    }
+
     public MonteCarloNode(MonteCarloNode Parent, Position point)
     {
         score = 0;
@@ -64,12 +73,26 @@ public class MonteCarloNode : MonoBehaviour
 
     public MonteCarloNode BestChild()
     {
-        double bestVal = double.MinValue;
+        int bestVal = int.MinValue;
         MonteCarloNode bestChild = null;
 
         foreach (MonteCarloNode node in children)
         {
-            
+            if (bestVal < node.score)
+            {
+                if (bestChild != null)
+                {
+                    // get the new node and reomve the old bestChild
+                    children.Remove(bestChild);
+                    bestChild = node;
+                }
+            }
+            else if (bestVal > node.score)
+            {
+                // remove node for saving memories
+                children.Remove(node);
+
+            }
         }
 
         return bestChild;
@@ -95,5 +118,12 @@ public class MonteCarloNode : MonoBehaviour
     public void AddChild(MonteCarloNode Child)
     {
         children.Add(Child);
+    }
+
+    public Position getRandomPosition(List<Position> availableMoves)
+    {
+
+
+        return null;
     }
 }
