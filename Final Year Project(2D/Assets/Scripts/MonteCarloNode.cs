@@ -13,27 +13,43 @@ public class MonteCarloNode : MonoBehaviour
     public List<MonteCarloNode> children;
     public List<MonteCarloNode> availableMoves;
 
-    public Position point;
-    public GoBoard board;
+    public Vector2 point;
+    public Board board;
 
-    public MonteCarloNode()
+    Player ai;
+
+    public MonteCarloNode(Board b, Player AI)
     {
         score = 0;
         timesVisited = 0;
+        ai = AI;
+        parent = null;
         children = new List<MonteCarloNode>();
-        //availableMoves = board.getAvailableMoves(); // insert board's availableMoves
-        
+        availableMoves = new List<MonteCarloNode>();
+        board = b.cloneBoard();
+
+        AddAvailableMoves(board.PossibleMoves());
     }
 
-    public MonteCarloNode(MonteCarloNode Parent, Position point)
+    public MonteCarloNode(MonteCarloNode Parent, Vector2 point)
     {
         score = 0;
         timesVisited = 0;
+        ai = Parent.ai;
         parent = Parent;
         children = new List<MonteCarloNode>();
         availableMoves = new List<MonteCarloNode>(parent.availableMoves);
         this.point = point;
-        board = new GoBoard();
+        board = parent.board.cloneBoard();
+        if (board.CurrentPlayerColor == Constants.BLACKCOLOR)
+        {
+            board.PlayPiece((int)point.x, (int)point.y, Constants.BLACKCOLOR);
+        }
+        else
+        {
+            board.PlayPiece((int)point.x, (int)point.y, Constants.WHITECOLOR);
+        }
+        //board.GenerateAvailableMoves();
         //AddAvailableMoves(board.availableMoves.Keys.ToList());
     }
 
@@ -67,49 +83,41 @@ public class MonteCarloNode : MonoBehaviour
             availableMoves.Remove(ret);
             return ret;
         }
-
+        Debug.Log("really really big problems");
         return null;
     }
 
     public MonteCarloNode BestChild()
     {
-        int bestVal = int.MinValue;
+        double bestVal = double.MinValue;
         MonteCarloNode bestChild = null;
 
         foreach (MonteCarloNode node in children)
         {
-            if (bestVal < node.score)
-            {
-                if (bestChild != null)
-                {
-                    // get the new node and reomve the old bestChild
-                    children.Remove(bestChild);
-                    bestChild = node;
-                }
-            }
-            else if (bestVal > node.score)
-            {
-                // remove node for saving memories
-                children.Remove(node);
+            double utc = ((double)node.score / (double)node.timesVisited) + ai.getRHS(timesVisited, node.timesVisited);
 
+            if (utc > bestVal)
+            {
+                bestChild = node;
+                bestVal = utc;
             }
         }
 
         return bestChild;
     }
 
-    public void AddAvailableMoves(List<Position> Points)
+    public void AddAvailableMoves(List<Vector2> Points)
     {
-        foreach (Position p in Points)
+        foreach (Vector2 p in Points)
         {
             availableMoves.Add(new MonteCarloNode(this, p));
         }
     }
 
 
-    public void AddChildren(List<Position> Points)
+    public void AddChildren(List<Vector2> Points)
     {
-        foreach (Position p in Points)
+        foreach (Vector2 p in Points)
         {
             AddChild(new MonteCarloNode(this, p));
         }
@@ -118,12 +126,5 @@ public class MonteCarloNode : MonoBehaviour
     public void AddChild(MonteCarloNode Child)
     {
         children.Add(Child);
-    }
-
-    public Position getRandomPosition(List<Position> availableMoves)
-    {
-
-
-        return null;
     }
 }

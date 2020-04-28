@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8025778538066114129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8025778538066114131}
+  - component: {fileID: 8025778538066114130}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8025778538066114131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025778538066114129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8025778538066114130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025778538066114129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c943a3a8e3c0fc4fb61248fdbb97929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoardTilePrefab: {fileID: 184398, guid: 652476066e73ff84596d21a7f2ec2770, type: 3}
+  BoardClickPrefab: {fileID: 184398, guid: 60cabcde6cf944d43b49fd9f21c63c30, type: 3}
+  PiecePrefab: {fileID: 113348, guid: ed8446f93ffe037419cc303b5f445fb2, type: 3}
+  txtPlayer1Score: {fileID: 0}
+  txtPlayer2Score: {fileID: 0}
+  txtStatus: {fileID: 0}
+  txtBoardSize: {fileID: 0}
+  txtDepth: {fileID: 0}
+  sldBoardSize: {fileID: 0}
+  sldDepth: {fileID: 0}
+  tglBlackAI: {fileID: 0}
+  tglWhiteAI: {fileID: 0}
+  btnPlay: {fileID: 0}
+  StartupPanel: {fileID: 0}
+  mainCanvas: {fileID: 0}
+  tileSpacing: 0.1
