@@ -96,12 +96,12 @@ public class MonteCarloNode
 
         foreach (MonteCarloNode node in children)
         {
-            double utc = ((double)node.score / (double)node.timesVisited) + ai.getRHS(timesVisited, node.timesVisited);
+            double ucb = ((double)node.score / (double)node.timesVisited) + ai.getRHS(timesVisited, node.timesVisited);
 
-            if (utc > bestVal)
+            if (ucb > bestVal)
             {
                 bestChild = node;
-                bestVal = utc;
+                bestVal = ucb;
             }
         }
 

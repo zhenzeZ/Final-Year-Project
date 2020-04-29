@@ -17,7 +17,8 @@ public class Player {
     public bool Playing;//this bool is just used to indicate if the AI is actively thinking at a given frame
 
     private static double Cp = 1 / Mathf.Sqrt(2);
-    public int numExpansions = 100;
+    public int numExpansions = 50;
+    public double controlValue = 1;
     private double[,] lookupTable = new double[1500, 1500];
 
     private int numLookups = 0;
@@ -126,9 +127,9 @@ public class Player {
 
                 //Debug.Log("node: " + node.point + " score: " + node.score + " timesVisited: " + node.timesVisited);
 
-                double UCBvalue = (double)node.score / (double)node.timesVisited + Math.Log10(numExpansions) / (double)node.timesVisited;
-
+                double UCBvalue = (double)node.score / (double)node.timesVisited + controlValue * Math.Log10(numExpansions) / (double)node.timesVisited;
                 //Debug.Log("UCB value: " + UCBvalue);
+
                 //if ((double)node.score / (double)node.timesVisited > maxVal)
                 //{
                 //    maxNode = new MonteCarloNode(node);
@@ -150,6 +151,16 @@ public class Player {
             computerMove.Insert(0, bestMove);
 
             board.PlayPiece((int)computerMove[0].x, (int)computerMove[0].y, color);
+
+            //based on the current socre to control the AI selection
+            if (color == Constants.BLACKCOLOR)
+            {
+                controlValue = board.CountPieces().x / board.CountPieces().y;
+            }
+            else
+            {
+                controlValue = board.CountPieces().y / board.CountPieces().x;
+            }
         }
         Playing = false;
     }
