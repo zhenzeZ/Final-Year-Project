@@ -184,6 +184,7 @@ public class BoardPrefab : MonoBehaviour {
         CreateBoard();
     }
 
+    //alphaBeta only
     public void ChangeAlphaBetaDepth(Single s)
     {
         int newDepth = (int)s;
@@ -253,31 +254,45 @@ public class BoardPrefab : MonoBehaviour {
         if (!Player1.Playing && !Player2.Playing && mainBoard.PossibleMovesNum != 0)
         {
             //mainBoard.PossibleMoves();//update possible moves;
-            //Debug.Log("possible moves: " + mainBoard.PossibleMovesNum);
+            Debug.Log("possible moves: " + mainBoard.PossibleMovesNum);
         }
 
-        //if (mainBoard.PossibleMoves().Count == 0)
-        //{
-        //    txtStatus.GetComponent<Text>().text = "End of Game";
-        //}
+        if (mainBoard.PossibleMoves().Count == 0)
+        {
+            txtStatus.GetComponent<Text>().text = "End of Game";
+        }
 
+        //Debug.Log("player1：" + Player1.Playing);
+        //Debug.Log("player2：" + Player2.Playing);
         if (Player1.AI && Player2.AI && mainBoard.PossibleMovesNum > 0)
         {
+            Debug.Log("AI Move");
             // AI with alphaBeta 
+            //if (mainBoard.CurrentTurn == 0 && !Player1.Playing)
+            //{
+            //    StartCoroutine(Player1.playAICoroutineAB());
+            //}
+            //else if (mainBoard.CurrentTurn == 1 && !Player2.Playing)
+            //{
+            //    StartCoroutine(Player2.playAICoroutineAB());
+            //}
+
+
+            // AI with MCTS
             if (mainBoard.CurrentTurn == 0 && !Player1.Playing)
             {
-                StartCoroutine(Player1.playAICoroutineAB());
+                StartCoroutine(Player1.playAICoroutineMCTS());
+                //Player1.playAICoroutineMCTS();
             }
             else if (mainBoard.CurrentTurn == 1 && !Player2.Playing)
             {
-                StartCoroutine(Player2.playAICoroutineAB());
+                StartCoroutine(Player2.playAICoroutineMCTS());
+                //Player2.playAICoroutineMCTS();
             }
-
-
         }
         else if (mainBoard.PossibleMovesNum > 0)//else if both players are not both AI...
         {
-
+            //Debug.Log("check");
             //transform.Rotate(Vector3.up, Time.deltaTime * 20);
             if (Input.GetMouseButtonDown(0) && ((mainBoard.CurrentTurn == 0 && !Player1.AI) || (mainBoard.CurrentTurn == 1 && !Player2.AI)))
             {
@@ -286,7 +301,7 @@ public class BoardPrefab : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit))
                 {
                     string GameObjName = hit.transform.gameObject.name;
-                    //Debug.Log(GameObjName);
+                    Debug.Log(GameObjName);
                     string[] delimiters = { ",", " " };
                     string[] tok = GameObjName.Split(delimiters, StringSplitOptions.None);
 
@@ -305,15 +320,23 @@ public class BoardPrefab : MonoBehaviour {
 
                 if (mainBoard.CurrentTurn == 0 && Player1.AI)
                 {
+                    Debug.Log("AI WITH BLACK PIECE");
                     // AI with alphaBeta 
-                    StartCoroutine(Player1.playAICoroutineAB());
+                    //StartCoroutine(Player1.playAICoroutineAB());
 
-
+                    // AI with MCTS
+                    StartCoroutine(Player1.playAICoroutineMCTS());
+                    //Player1.playAICoroutineMCTS();
                 }
                 else if (mainBoard.CurrentTurn == 1 && Player2.AI)
                 {
+                    Debug.Log("AI WITH WHITE PIECE");
                     // AI with alphaBeta 
-                    StartCoroutine(Player2.playAICoroutineAB());
+                    //StartCoroutine(Player2.playAICoroutineAB());
+
+                    // AI with MCTS
+                    StartCoroutine(Player2.playAICoroutineMCTS());
+                    //Player2.playAICoroutineMCTS();
                 }
             }
         }

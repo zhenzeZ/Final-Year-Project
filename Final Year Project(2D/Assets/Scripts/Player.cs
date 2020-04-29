@@ -88,50 +88,69 @@ public class Player {
     // Returns the best possible computer move as a List<Point>, including the piece put down
     public IEnumerator playAICoroutineMCTS()
     {
+        Debug.Log("MCTS start");
+
         Playing = true;
         yield return new WaitForSeconds(0.1f);
-
-        Debug.Log("computer move");
-
-        List<Vector2> computerMove = new List<Vector2>();
-        Vector2 bestMove = new Vector2();
-
-
-        MonteCarloNode rootNode = new MonteCarloNode(board.cloneBoard(), this);
-
-        for (int i = 0; i < numExpansions; i++)
+        int playableSpotsCount = board.PossibleMoves().Count;
+        if (playableSpotsCount > 0)
         {
-            MonteCarloNode n = TreePolicy(rootNode);
-            n.Backup(Simulate(n));
-        }
-        Debug.Log ("finished simulating");
-        MonteCarloNode maxNode = null;
+            Debug.Log("computer move");
 
-        Debug.Log ("maxnode set");
-        double maxVal = double.NegativeInfinity;
+            List<Vector2> computerMove = new List<Vector2>();
+            Vector2 bestMove = new Vector2();
 
-        foreach (MonteCarloNode node in rootNode.children)
-        {
-            if (node.timesVisited == 0)
+
+            // MonteCarloNode rootNode = new MonteCarloNode(board.cloneBoard(), this);
+            MonteCarloNode rootNode;
+            rootNode = new MonteCarloNode(board.cloneBoard(), this);
+
+
+            for (int i = 0; i < numExpansions; i++)
             {
-                continue;
+                MonteCarloNode n = TreePolicy(rootNode);
+                n.Backup(Simulate(n));
+            }
+            Debug.Log("finished simulating");
+            MonteCarloNode maxNode = null;
+
+            Debug.Log("maxnode set");
+            double maxVal = double.NegativeInfinity;
+
+            foreach (MonteCarloNode node in rootNode.children)
+            {
+                if (node.timesVisited == 0)
+                {
+                    continue;
+                }
+
+                //Debug.Log("node: " + node.point + " score: " + node.score + " timesVisited: " + node.timesVisited);
+
+                double UCBvalue = (double)node.score / (double)node.timesVisited + Math.Log10(numExpansions) / (double)node.timesVisited;
+
+                //Debug.Log("UCB value: " + UCBvalue);
+                //if ((double)node.score / (double)node.timesVisited > maxVal)
+                //{
+                //    maxNode = new MonteCarloNode(node);
+                //    maxVal = (double)node.score / (double)node.timesVisited;
+
+                //}
+
+                if (UCBvalue > maxVal)
+                {
+                    maxNode = new MonteCarloNode(node);
+                    maxVal = UCBvalue;
+                }
             }
 
-            if ((double)node.score / (double)node.timesVisited > maxVal)
-            {
-                maxNode = new MonteCarloNode(node);
-                maxVal = (double)node.score / (double)node.timesVisited;
-            }
+            bestMove = maxNode.point;
+
+            //board.state.availableMoves.TryGetValue(bestMove, out computerMove);
+            // Have to add the move itself to the list of Points
+            computerMove.Insert(0, bestMove);
+
+            board.PlayPiece((int)computerMove[0].x, (int)computerMove[0].y, color);
         }
-
-        bestMove = maxNode.point;
-
-        //board.state.availableMoves.TryGetValue(bestMove, out computerMove);
-        // Have to add the move itself to the list of Points
-        computerMove.Insert(0, bestMove);
-
-        board.PlayPiece((int)computerMove[0].x, (int)computerMove[0].y, color);
-
         Playing = false;
     }
 
@@ -236,7 +255,7 @@ public class Player {
 
     public int Simulate(MonteCarloNode node)
     {
-        Debug.Log ("simulate" );
+        //Debug.Log ("simulate" );
         Board temp = node.board.cloneBoard();
         UnityEngine.Random.seed = (int)Time.timeSinceLevelLoad;
 
@@ -252,19 +271,31 @@ public class Player {
 
             //}
 
-            Debug.Log(i + "  " + moves.Count());
-
-            board.PlayPiece((int)moves[i].x, (int)moves[i].y, color);
+            //Debug.Log(i + "  " + moves.Count() + " random pos: " + moves[i]);
+            if (temp.CurrentTurn == 0)
+            {
+                temp.PlayPiece((int)moves[i].x, (int)moves[i].y, Constants.BLACKCOLOR);
+            }
+            else
+            {
+                temp.PlayPiece((int)moves[i].x, (int)moves[i].y, Constants.WHITECOLOR);
+            }
             //board.ApplyMove(board.PlacePiece(moves[i]));
             //board.GenerateAvailableMoves();
         }
-        Debug.Log ("simulated");
-        if (board.WhiteCount > board.BlackCount)
+        //Debug.Log ("simulated");
+        if (temp.CountPieces().x > temp.CountPieces().y)
+        {
             return 1;
-        else if (board.WhiteCount > board.BlackCount)
+        }
+        else if (temp.CountPieces().y > temp.CountPieces().x)
+        {
             return -1;
+        }
         else
+        {
             return 0;
+        }
 
     }
 

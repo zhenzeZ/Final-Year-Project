@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
-public class MonteCarloNode : MonoBehaviour
+public class MonteCarloNode
 {
     public int score;
     public int timesVisited;
@@ -41,7 +40,7 @@ public class MonteCarloNode : MonoBehaviour
         availableMoves = new List<MonteCarloNode>(parent.availableMoves);
         this.point = point;
         board = parent.board.cloneBoard();
-        if (board.CurrentPlayerColor == Constants.BLACKCOLOR)
+        if (board.CurrentTurn == 0)
         {
             board.PlayPiece((int)point.x, (int)point.y, Constants.BLACKCOLOR);
         }
@@ -67,6 +66,7 @@ public class MonteCarloNode : MonoBehaviour
     {
         score += val;
         timesVisited++;
+        //Debug.Log(" score: " + score + " timesVisited: " + timesVisited);
         if (parent != null)
         {
             parent.Backup(val);
@@ -76,9 +76,11 @@ public class MonteCarloNode : MonoBehaviour
 
     public MonteCarloNode Expand()
     {
+        UnityEngine.Random.seed = (int)Time.timeSinceLevelLoad;
         if (availableMoves.Count > 0)
         {
-            MonteCarloNode ret = availableMoves[0];
+            int i = UnityEngine.Random.Range(0, availableMoves.Count - 1);
+            MonteCarloNode ret = availableMoves[i];
             AddChild(ret);
             availableMoves.Remove(ret);
             return ret;
