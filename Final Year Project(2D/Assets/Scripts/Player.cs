@@ -12,6 +12,7 @@ public struct Node
 
 public class Player {
     public bool AI;//Indicates if this player is an AI
+    public bool AlphaBeta; //Indicates if this player is using AlphaBeta
     public Color color { get; private set; }
     public Board board;//reference to the actual Board
     public bool Playing;//this bool is just used to indicate if the AI is actively thinking at a given frame

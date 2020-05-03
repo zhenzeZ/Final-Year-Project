@@ -24,6 +24,8 @@ public class BoardPrefab : MonoBehaviour {
     public Slider sldDepth;
     public Toggle tglBlackAI;
     public Toggle tglWhiteAI;
+    public Toggle tglBlackAI_AlphaBeta;
+    public Toggle tglWhiteAI_AlphaBeta;
     public Button btnPlay;
     public GameObject StartupPanel;
     public GameObject mainCanvas;
@@ -206,6 +208,8 @@ public class BoardPrefab : MonoBehaviour {
         int width = (int)mainCanvas.GetComponent<RectTransform>().rect.width;
         Player1.AI = tglBlackAI.GetComponent<Toggle>().isOn;
         Player2.AI = tglWhiteAI.GetComponent<Toggle>().isOn;
+        Player1.AlphaBeta = tglBlackAI_AlphaBeta.GetComponent<Toggle>().isOn;
+        Player2.AlphaBeta = tglWhiteAI_AlphaBeta.GetComponent<Toggle>().isOn;
         StartupPanel.GetComponent<RectTransform>().localPosition = new Vector3(width, 0);
         Debug.Log(Player1.AI);
         Debug.Log(Player2.AI);
@@ -268,25 +272,37 @@ public class BoardPrefab : MonoBehaviour {
         {
             Debug.Log("AI Move");
             // AI with alphaBeta 
-            //if (mainBoard.CurrentTurn == 0 && !Player1.Playing)
-            //{
-            //    StartCoroutine(Player1.playAICoroutineAB());
-            //}
-            //else if (mainBoard.CurrentTurn == 1 && !Player2.Playing)
-            //{
-            //    StartCoroutine(Player2.playAICoroutineAB());
-            //}
+            if (mainBoard.CurrentTurn == 0 && !Player1.Playing)
+            {
+                if (Player1.AlphaBeta)
+                {
+                    StartCoroutine(Player1.playAICoroutineAB());
+                }
+            }
+            else if (mainBoard.CurrentTurn == 1 && !Player2.Playing)
+            {
+                if (Player2.AlphaBeta)
+                {
+                    StartCoroutine(Player2.playAICoroutineAB());
+                }
+            }
 
 
             // AI with MCTS
             if (mainBoard.CurrentTurn == 0 && !Player1.Playing)
             {
-                StartCoroutine(Player1.playAICoroutineMCTS());
+                if (!Player1.AlphaBeta)
+                {
+                    StartCoroutine(Player1.playAICoroutineMCTS());
+                }
                 //Player1.playAICoroutineMCTS();
             }
             else if (mainBoard.CurrentTurn == 1 && !Player2.Playing)
             {
-                StartCoroutine(Player2.playAICoroutineMCTS());
+                if (!Player2.AlphaBeta)
+                {
+                    StartCoroutine(Player2.playAICoroutineMCTS());
+                }
                 //Player2.playAICoroutineMCTS();
             }
         }
@@ -321,22 +337,32 @@ public class BoardPrefab : MonoBehaviour {
                 if (mainBoard.CurrentTurn == 0 && Player1.AI)
                 {
                     Debug.Log("AI WITH BLACK PIECE");
-                    // AI with alphaBeta 
-                    //StartCoroutine(Player1.playAICoroutineAB());
-
-                    // AI with MCTS
-                    StartCoroutine(Player1.playAICoroutineMCTS());
-                    //Player1.playAICoroutineMCTS();
+                    if (Player1.AlphaBeta)
+                    {
+                        // AI with alphaBeta 
+                        StartCoroutine(Player1.playAICoroutineAB());
+                    }
+                    else
+                    {
+                        // AI with MCTS
+                        StartCoroutine(Player1.playAICoroutineMCTS());
+                        //Player1.playAICoroutineMCTS();
+                    }
                 }
                 else if (mainBoard.CurrentTurn == 1 && Player2.AI)
                 {
                     Debug.Log("AI WITH WHITE PIECE");
-                    // AI with alphaBeta 
-                    //StartCoroutine(Player2.playAICoroutineAB());
-
-                    // AI with MCTS
-                    StartCoroutine(Player2.playAICoroutineMCTS());
-                    //Player2.playAICoroutineMCTS();
+                    if (Player1.AlphaBeta)
+                    {
+                        // AI with alphaBeta 
+                        //StartCoroutine(Player2.playAICoroutineAB());
+                    }
+                    else
+                    {
+                        // AI with MCTS
+                        StartCoroutine(Player2.playAICoroutineMCTS());
+                        //Player2.playAICoroutineMCTS();
+                    }
                 }
             }
         }
